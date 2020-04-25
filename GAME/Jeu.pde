@@ -7,10 +7,10 @@ void Jeu() {
 
   //Position + Direction
   if (GAME_Direction_Player==1) {
-    image(imgPlayerR, GAME_X_Player, GAME_Y_Player);
+    image(imgPlayerR, GAME_X_Player, GAME_Y_Player+(height/10));
   }
   if (GAME_Direction_Player==2) {
-    image(imgPlayerL, GAME_X_Player, GAME_Y_Player);
+    image(imgPlayerL, GAME_X_Player, GAME_Y_Player+(height/10));
   }
 
 
@@ -43,7 +43,7 @@ void Jeu() {
 if (GAME_X_Player >= width-100){
   GAME_RIGHT_hitbox=1;
 }
-if (GAME_X_Player <= width-100){
+if (GAME_X_Player <= width-100){ 
   GAME_RIGHT_hitbox=0;
 }
 

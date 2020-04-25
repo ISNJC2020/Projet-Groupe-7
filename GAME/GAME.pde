@@ -18,8 +18,8 @@ String w=""; //variables de la définition de l'écran custom
 String h="";
 //GAME
 int GAME_Direction_Player=1; //1=R 2=L
-int GAME_X_Player=10;
-float GAME_Y_Player=10;
+int GAME_X_Player=0;
+float GAME_Y_Player=0;
 int GAME_Vitesse_Player=100; //Entre 1 et 100
 int GAME_Delay_Vitesse=100;
 int GAME_Chrono_Vitesse=0;
@@ -235,22 +235,22 @@ void setup()
 
   imgPlayerL= loadImage("Player.png");
   imgPlayerR= loadImage("Player.png");
-  imgPlayerL.resize(32*height/300, 64*height/300);
-  imgPlayerR.resize(32*height/300, 64*height/300);
+  imgPlayerL.resize(32*height/300, 32*height/300);
+  imgPlayerR.resize(32*height/300, 32*height/300);
 
 
  
-    imgPlayerR=createImage(imgPlayerL.width, imgPlayerL.height, ARGB);
-    for (int i=0; i<imgPlayerR.pixels.length; i++)
+    imgPlayerL=createImage(imgPlayerR.width, imgPlayerR.height, ARGB);
+    for (int i=0; i<imgPlayerL.pixels.length; i++)
     {
-      imgPlayerR.pixels[i]=color(255, 255, 255);
+      imgPlayerL.pixels[i]=color(255, 255, 255);
     }
 
-    for (int x=0; x<imgPlayerL.width; x++)
+    for (int x=0; x<imgPlayerR.width; x++)
     {
-      for (int y=0; y<imgPlayerL.height; y++)
+      for (int y=0; y<imgPlayerR.height; y++)
       {
-        imgPlayerR.pixels[y*imgPlayerL.width+x]=imgPlayerL.pixels[y*imgPlayerL.width+(imgPlayerL.width-x-1)];
+        imgPlayerL.pixels[y*imgPlayerR.width+x]=imgPlayerR.pixels[y*imgPlayerR.width+(imgPlayerR.width-x-1)];
       }
     }
   
