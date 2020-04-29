@@ -1,9 +1,12 @@
 void Jeu() {
-
+  background(#303030);
+  
+  
   fill(#999999);
   rect(0, height, width, -height*2/5+ 64*height/310);
 
-  println (key);
+
+
 
   //Position + Direction
   if (GAME_Direction_Player==1) {
@@ -14,19 +17,32 @@ void Jeu() {
   }
 
 
+
+
   if (GAME_SAUT==1) {
+    
+    GAME_Y_Player = ((4.9*(t*t)-20*t)*(width/200)+GAME_Y_Player_Jump) ;
 
-    GAME_T_SAUT=GAME_T_SAUT+2;
-
-    GAME_Y_Player = height*3/5-  ((-(GAME_T_SAUT*GAME_T_SAUT)+100*GAME_T_SAUT)/(8/GAME_CoeffSaut));
-
-
-
-    if (GAME_T_SAUT==100) {
-      GAME_T_SAUT=0;
+    if (HITBOX_DOWN == 1) {
       GAME_SAUT=0;
+      t=0;
     }
   }
+  
+
+  if (HITBOX_DOWN == 0 && GAME_SAUT == 0){
+    println(GAME_Y_Player_Jump); 
+    GAME_Y_Player = (4.9*(t*t)*(width/200));
+  }
+  if (HITBOX_DOWN == 1){
+    t=0;
+    GAME_Y_Player_Jump = GAME_Y_Player;
+    println("ok");
+    println(GAME_Y_Player_Jump); 
+  }
+  
+  
+  
 
   if (keyPressed) {
     if (key!=' ') {
@@ -40,18 +56,18 @@ void Jeu() {
     }
   }
 
-if (GAME_X_Player >= width-100){
-  GAME_RIGHT_hitbox=1;
-}
-if (GAME_X_Player <= width-100){ 
-  GAME_RIGHT_hitbox=0;
-}
+
 
 
   if (Option_Control==2) {
     if (keyPressed) {
 
-      if ((key=='d' | keySave =='d') & GAME_RIGHT_hitbox==0) {
+      if (key == 'z'){                                    //
+        GAME_Y_Player = 50;                               // Test de chute ne pas oublier de retirer /!\
+      }                                                   //
+      
+      
+      if ((key=='d' | keySave =='d') & HITBOX_RIGHT==0) {
         GAME_Key_Control=0;
         GAME_Direction_Player=1;
         GAME_Chrono_Vitesse = GAME_Chrono_Vitesse + GAME_Vitesse_Player;
@@ -63,7 +79,7 @@ if (GAME_X_Player <= width-100){
         }
       }
 
-      if ((key=='q' | keySave =='q') & GAME_LEFT_hitbox==0) {
+      if ((key=='q' | keySave =='q') & HITBOX_LEFT==0) {
         GAME_Key_Control=0;
         GAME_Direction_Player=2;
         GAME_Chrono_Vitesse = GAME_Chrono_Vitesse + GAME_Vitesse_Player;
@@ -77,8 +93,12 @@ if (GAME_X_Player <= width-100){
 
       if (GAME_SAUT==0) { 
         if (key==' ' && GAME_SAUT==0) {
+          t=0;
+          GAME_Y_Player_Jump=GAME_Y_Player;
           GAME_Key_Control=0;
           GAME_SAUT=1;
+          GAME_Y_Player = GAME_Y_Player-1;
+          HITBOX_DOWN = 0;
         }
       }
     }
@@ -88,7 +108,7 @@ if (GAME_X_Player <= width-100){
   if (Option_Control==1) {
     if (keyPressed) {
       keyPressed();
-      if ((keyCode ==RIGHT  | keySave =='d') & GAME_RIGHT_hitbox==0) {
+      if ((keyCode ==RIGHT  | keySave =='d') && HITBOX_RIGHT==0) {
         GAME_Key_Control=0;
         GAME_Direction_Player=1;
         GAME_Chrono_Vitesse = GAME_Chrono_Vitesse + GAME_Vitesse_Player;
@@ -100,7 +120,7 @@ if (GAME_X_Player <= width-100){
         }
       }
 
-      if ((keyCode ==LEFT | keySave =='q') & GAME_LEFT_hitbox==0) {
+      if ((keyCode ==LEFT | keySave =='q') && HITBOX_LEFT==0) {
         GAME_Key_Control=0;
         GAME_Direction_Player=2;
         GAME_Chrono_Vitesse = GAME_Chrono_Vitesse + GAME_Vitesse_Player;
@@ -114,6 +134,8 @@ if (GAME_X_Player <= width-100){
 
       if (GAME_SAUT==0) {
         if ((key==' ' && GAME_SAUT==0)) {
+          t=0;
+          GAME_Y_Player_Jump = GAME_Y_Player;
           GAME_Key_Control=0;
           GAME_SAUT=1;
         }

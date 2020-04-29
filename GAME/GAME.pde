@@ -6,6 +6,11 @@ PImage imgPlayerR;
 
 int Timer=0;
 
+float t=0;
+
+
+
+
 int x = 0;
 int y = 0;
 int Option_Hz = 70;            //fréquence de l'écran
@@ -27,11 +32,12 @@ int GAME_SAUT=0;
 int GAME_T_SAUT=0;
 int GAME_Key_Control=0;
 int GAME_CoeffSaut=1;
+float GAME_Y_Player_Jump=0;
 
-int GAME_UP_hitbox=0;
-int GAME_DOWN_hitbox=0;
-int GAME_LEFT_hitbox=0;
-int GAME_RIGHT_hitbox=0;
+int HITBOX_UP=0;
+int HITBOX_DOWN=0;
+int HITBOX_LEFT=0;
+int HITBOX_RIGHT=0;
 
 //Options
 int Option_Control=2;        //Switch entre le control avec ZQSD (2) et les fleches (1)
@@ -140,7 +146,7 @@ void Text() {
   fill(#FFFFD0);
   PFont maPolice = createFont("Times", 150*height/1440);
   textFont(maPolice, 150*height/1440);
-  text("Shadow of the dead", width/2, height/5);
+  text("Nom Indéterminé", width/2, height/5);
   textAlign(LEFT);
   textFont(maPolice, 75*height/1440);
   text("Play", width/30, height*5/10);
@@ -158,6 +164,7 @@ void ClicText() {
           {
             Timer =0;
             MODE=2;
+            t=0;
             println("Clic");
             delay(10);
           }
@@ -277,12 +284,21 @@ void setup()
 
 void draw()
 {
+
+  
+  
   frameRate(Option_Hz);
-  background(#000000);
+  
   textAlign(CENTER);
   Timer = Timer+1;
 
+
+  t=t+(0.1);
+
+
+
   if (MODE==1) {
+    background(#000000);
     for (int i = 0; i < objets.length; i++) {
       objets[i].deplacement();
       objets[i].carre();
@@ -294,9 +310,18 @@ void draw()
     ClicText();
   }
   if (MODE==3) {
+    
     Options();
   }
   if (MODE==2) {
+    
     Jeu();
+    HitBox();
   }
+  
+  if (MODE==4){
+    Credits();
+  }
+  
+  
 }

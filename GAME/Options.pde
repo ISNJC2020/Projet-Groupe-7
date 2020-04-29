@@ -1,4 +1,6 @@
 void Options() {
+  background(#000000);
+  
   textAlign(LEFT);
   fill(#151520);
   rect(height/20, height/20, width-height*1/10, height*18/20);
