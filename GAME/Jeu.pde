@@ -1,19 +1,19 @@
 void Jeu() {
-  background(#303030);
+  
   
   
   fill(#999999);
-  rect(0, height, width, -height*2/5+ 64*height/310);
+  //rect(0, height, width, -height*2/5+ 64*height/310);
 
 
 
 
   //Position + Direction
   if (GAME_Direction_Player==1) {
-    image(imgPlayerR, GAME_X_Player, GAME_Y_Player+(height/10));
+    image(imgPlayerR, GAME_X_Player, GAME_Y_Player);
   }
   if (GAME_Direction_Player==2) {
-    image(imgPlayerL, GAME_X_Player, GAME_Y_Player+(height/10));
+    image(imgPlayerL, GAME_X_Player, GAME_Y_Player);
   }
 
 
@@ -21,7 +21,7 @@ void Jeu() {
 
   if (GAME_SAUT==1) {
     
-    GAME_Y_Player = ((4.9*(t*t)-20*t)*(width/200)+GAME_Y_Player_Jump) ;
+    GAME_Y_Player = ((1.5*(t*t)-15*t)*(width/360)+GAME_Y_Player_Jump) ;
 
     if (HITBOX_DOWN == 1) {
       GAME_SAUT=0;
@@ -32,7 +32,7 @@ void Jeu() {
 
   if (HITBOX_DOWN == 0 && GAME_SAUT == 0){
     println(GAME_Y_Player_Jump); 
-    GAME_Y_Player = (4.9*(t*t)*(width/200));
+    GAME_Y_Player = (1.5*(t*t)*(width/360));
   }
   if (HITBOX_DOWN == 1){
     t=0;
@@ -75,7 +75,7 @@ void Jeu() {
 
         if (GAME_Chrono_Vitesse >= GAME_Delay_Vitesse) {
           GAME_Chrono_Vitesse=0;
-          GAME_X_Player=GAME_X_Player+(600/Option_Hz);
+          GAME_X_Player=GAME_X_Player+(2000/Option_Hz);
         }
       }
 
@@ -87,11 +87,11 @@ void Jeu() {
 
         if (GAME_Chrono_Vitesse >= GAME_Delay_Vitesse) {
           GAME_Chrono_Vitesse=0;
-          GAME_X_Player=GAME_X_Player-(600/Option_Hz);
+          GAME_X_Player=GAME_X_Player-(2000/Option_Hz);
         }
       }
 
-      if (GAME_SAUT==0) { 
+      if (GAME_SAUT==0 && VerSaut==0) { 
         if (key==' ' && GAME_SAUT==0) {
           t=0;
           GAME_Y_Player_Jump=GAME_Y_Player;

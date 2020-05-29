@@ -13,7 +13,7 @@ float t=0;
 
 int x = 0;
 int y = 0;
-int Option_Hz = 70;            //fréquence de l'écran
+int Option_Hz = 600;            //fréquence de l'écran
 float Option_FrameRate;
 float Option_vitesse;
 int MODE=1; // permet de derteminé quel écran doit être affiché (menu, jeux, option...)
@@ -33,6 +33,10 @@ int GAME_T_SAUT=0;
 int GAME_Key_Control=0;
 int GAME_CoeffSaut=1;
 float GAME_Y_Player_Jump=0;
+
+int VerSaut=0;
+float translationX;
+float translationY;
 
 int HITBOX_UP=0;
 int HITBOX_DOWN=0;
@@ -262,6 +266,10 @@ void setup()
     }
   
   GAME_Y_Player=height*3/5;
+  GAME_X_Player=20;
+  translationY = GAME_Y_Player;
+  translationX = GAME_X_Player;
+  
 
   println("SettingsSize");
   println(Option_SettingsSize);
@@ -270,9 +278,10 @@ void setup()
 
 
 
-  Option_FrameRate=200/Option_Hz;
+  Option_FrameRate=0.3;
   Option_vitesse=Option_FrameRate*height/1080;
-
+println(Option_FrameRate);
+println(Option_vitesse);
 
 
   background(#000000);
@@ -280,6 +289,7 @@ void setup()
   for (int i = 0; i < objets.length; i++) {
     objets[i] = new objet();
   }
+  noStroke();
 }
 
 void draw()
@@ -314,9 +324,12 @@ void draw()
     Options();
   }
   if (MODE==2) {
-    
+    map();
     Jeu();
-    HitBox();
+    //HitBox();
+    fill(#FF0000);
+    rect(GAME_X_Player, GAME_Y_Player, 5 ,5);
+    rect (10,0.2*width+translationY,50,5);
   }
   
   if (MODE==4){
