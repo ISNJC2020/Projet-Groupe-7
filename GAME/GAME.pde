@@ -2,9 +2,11 @@ PImage imgOption_control_fleches;
 PImage imgOption_control_ZQSD;
 PImage imgPlayerL;
 PImage imgPlayerR;
+PImage imgTuto1;
 
 
 int Timer=0;
+float echelle;
 
 float t=0;
 
@@ -23,7 +25,7 @@ String w=""; //variables de la définition de l'écran custom
 String h="";
 //GAME
 int GAME_Direction_Player=1; //1=R 2=L
-int GAME_X_Player=0;
+float GAME_X_Player=0;
 float GAME_Y_Player=0;
 int GAME_Vitesse_Player=100; //Entre 1 et 100
 int GAME_Delay_Vitesse=100;
@@ -248,6 +250,9 @@ void setup()
   imgPlayerR= loadImage("Player.png");
   imgPlayerL.resize(32*height/300, 32*height/300);
   imgPlayerR.resize(32*height/300, 32*height/300);
+  
+  imgTuto1= loadImage("Tuto1.png");
+  imgTuto1.resize(542*height/1000,85*height/1000);
 
 
  
@@ -265,10 +270,10 @@ void setup()
       }
     }
   
-  GAME_Y_Player=height*3/5;
-  GAME_X_Player=20;
-  translationY = GAME_Y_Player;
-  translationX = GAME_X_Player;
+  GAME_Y_Player=0;
+  GAME_X_Player=0;
+  translationY = height*3/5;
+  translationX = 20;
   
 
   println("SettingsSize");
@@ -290,6 +295,8 @@ println(Option_vitesse);
     objets[i] = new objet();
   }
   noStroke();
+  echelle=(height*100/1440);
+  echelle=echelle/100;
 }
 
 void draw()
@@ -327,9 +334,7 @@ void draw()
     map();
     Jeu();
     //HitBox();
-    fill(#FF0000);
-    rect(GAME_X_Player, GAME_Y_Player, 5 ,5);
-    rect (10,0.2*width+translationY,50,5);
+
   }
   
   if (MODE==4){
