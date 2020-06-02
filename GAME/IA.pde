@@ -1,5 +1,5 @@
-int GAME_x_ennemi=0;
-int GAME_y_ennemi=0;
+int GAME_x_ennemi;
+int GAME_y_ennemi;
 
 
 void deplacement_ennemi(){
