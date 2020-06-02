@@ -2,11 +2,9 @@ PImage imgOption_control_fleches;
 PImage imgOption_control_ZQSD;
 PImage imgPlayerL;
 PImage imgPlayerR;
-PImage imgTuto1;
 
 
 int Timer=0;
-float echelle;
 
 float t=0;
 
@@ -24,8 +22,8 @@ int Option_EnterSettings=0;
 String w=""; //variables de la définition de l'écran custom
 String h="";
 //GAME
-int GAME_Direction_Player=1; //1=R 2=L
-float GAME_X_Player=0;
+int GAME_Direction_Player=1; //1: droite 2: gauche
+int GAME_X_Player=0;
 float GAME_Y_Player=0;
 int GAME_Vitesse_Player=100; //Entre 1 et 100
 int GAME_Delay_Vitesse=100;
@@ -35,6 +33,8 @@ int GAME_T_SAUT=0;
 int GAME_Key_Control=0;
 int GAME_CoeffSaut=1;
 float GAME_Y_Player_Jump=0;
+int GAME_ennemi_hitbox_right=0;
+int GAME_ennemi_hitbox_left=0;
 
 int VerSaut=0;
 float translationX;
@@ -46,7 +46,7 @@ int HITBOX_LEFT=0;
 int HITBOX_RIGHT=0;
 
 //Options
-int Option_Control=2;        //Switch entre le control avec ZQSD (2) et les fleches (1)
+int Option_Control=2;        //Switch entre le contrôle avec ZQSD (2) et les flèches (1)
 int Option_SettingsSize=1;
 int Option_W=0;
 int Option_H=0;
@@ -250,9 +250,6 @@ void setup()
   imgPlayerR= loadImage("Player.png");
   imgPlayerL.resize(32*height/300, 32*height/300);
   imgPlayerR.resize(32*height/300, 32*height/300);
-  
-  imgTuto1= loadImage("Tuto1.png");
-  imgTuto1.resize(542*height/1000,85*height/1000);
 
 
  
@@ -270,10 +267,10 @@ void setup()
       }
     }
   
-  GAME_Y_Player=0;
-  GAME_X_Player=0;
-  translationY = height*3/5;
-  translationX = 20;
+  GAME_Y_Player=height*3/5;
+  GAME_X_Player=20;
+  translationY = GAME_Y_Player;
+  translationX = GAME_X_Player;
   
 
   println("SettingsSize");
@@ -295,8 +292,6 @@ println(Option_vitesse);
     objets[i] = new objet();
   }
   noStroke();
-  echelle=(height*100/1440);
-  echelle=echelle/100;
 }
 
 void draw()
@@ -333,8 +328,10 @@ void draw()
   if (MODE==2) {
     map();
     Jeu();
-    //HitBox();
-
+    HitBox();
+    fill(#FF0000);
+    rect(GAME_X_Player, GAME_Y_Player, 5 ,5);
+    rect (10,0.2*width+translationY,50,5);
   }
   
   if (MODE==4){
