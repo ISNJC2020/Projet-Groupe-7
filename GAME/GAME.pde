@@ -35,7 +35,7 @@ int GAME_CoeffSaut=1;
 float GAME_Y_Player_Jump=0;
 int GAME_ennemi_hitbox_right=0;
 int GAME_ennemi_hitbox_left=0;
-int GAME_ennemi_hitbox_down=0;
+int GAME_ennemi_hitbox_down;
 
 int VerSaut=0;
 float translationX;
@@ -330,6 +330,7 @@ void draw()
     map();
     Jeu();
     HitBox();
+    deplacement_ennemi();
     fill(#FF0000);
     rect(GAME_X_Player, GAME_Y_Player, 5 ,5);
     rect (10,0.2*width+translationY,50,5);
