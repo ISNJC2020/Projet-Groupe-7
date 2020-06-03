@@ -35,6 +35,9 @@ int GAME_T_SAUT=0;
 int GAME_Key_Control=0;
 int GAME_CoeffSaut=1;
 float GAME_Y_Player_Jump=0;
+int GAME_ennemi_hitbox_right=0;
+int GAME_ennemi_hitbox_left=0;
+int GAME_ennemi_hitbox_down;
 
 int VerSaut=0;
 float translationX;
