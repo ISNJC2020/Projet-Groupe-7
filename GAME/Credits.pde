@@ -2,9 +2,9 @@ void Credits() {
   background(#000000);
 
 
-  // Thibaut Progrmateur
-  // Thomas Progrmateur
-  // Lucas Progrmateur
+  // Thibaut Programmeur
+  // Thomas Programmeur
+  // Lucas Programmeur
   
   //Thibaut Game designer 
   //Thomas Game designer
