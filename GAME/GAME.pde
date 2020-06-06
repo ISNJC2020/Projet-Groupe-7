@@ -1,4 +1,4 @@
-PImage imgOption_control_fleches;
+   PImage imgOption_control_fleches;
 PImage imgOption_control_ZQSD;
 PImage imgPlayerL;
 PImage imgPlayerR;
