@@ -1,8 +1,15 @@
+int DeblMapTWO = 1;
+int DeblMapThree = 1;
+int DeblMapFour = 1;
+
+
+
 PImage imgOption_control_fleches;
 PImage imgOption_control_ZQSD;
 PImage imgPlayerL;
 PImage imgPlayerR;
 PImage imgTuto1;
+
 
 
 int Timer=0;
@@ -11,7 +18,9 @@ float echelle;
 float t=0;
 
 
+int SelectMap = 0;
 
+int MAP = 0;
 int PAUSE = 0;
 int x = 0;
 int y = 0;
@@ -241,7 +250,7 @@ void settings()
 }
 
 
-  
+
 void setup()
 {
   imgOption_control_fleches = loadImage("Direction fleches.png");
@@ -315,7 +324,7 @@ void draw()
   Timer = Timer+1;
 
 
-  
+
 
 
   if (MODE==1) {
@@ -333,43 +342,41 @@ void draw()
 
     Options();
   }
+
   if (MODE==2) {
-
-    if (keyPressed) {
-
-      if (key == 'p' && Timer >= 60) {
-        if (PAUSE == 0) {
-          PAUSE =1;
-          Timer = 0;
-          println ("OFF");
-        }
-      }
+    if (PAUSE == 0) {
+      if (MAP != 0) {
+      t=t+(0.1);
     }
-    if (keyPressed) {
-      if (key == 'p' && Timer >= 60) {
-        if (PAUSE == 1) {
-          PAUSE = 0;
-          Timer = 0;
-          println ("ON");
-        }
+
+      if (MAP == 0) {
+        MenuMap();
       }
+
+      if (MAP == 1) {
+        mapONE();
+        Jeu();
+      }
+      if (MAP == 2) {
+        Jeu();
+      }
+      if (MAP == 3) {
+        Jeu();
+      }
+      if (MAP == 4) {
+        Jeu();
+      }
+
+      //HitBox();
+      deplacement_ennemi();
+    }
   }
 
-  if (PAUSE == 0) {
-    t=t+(0.1);
-    map();
-    Jeu();
-    //HitBox();
-    deplacement_ennemi();
-  }
-}
-if (PAUSE==1){
- pause();
-  
-  
-}
+  pause();
 
-if (MODE==4) {
-  Credits();
-}
+
+
+  if (MODE==4) {
+    Credits();
+  }
 }

@@ -1,4 +1,4 @@
-void map() {
+void mapONE() {
 
   
   //MAP
