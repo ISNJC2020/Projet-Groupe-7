@@ -1,4 +1,4 @@
-   PImage imgOption_control_fleches;
+PImage imgOption_control_fleches;
 PImage imgOption_control_ZQSD;
 PImage imgPlayerL;
 PImage imgPlayerR;
@@ -12,10 +12,10 @@ float t=0;
 
 
 
-
+int PAUSE = 0;
 int x = 0;
 int y = 0;
-int Option_Hz = 600;            //fréquence de l'écran
+int Option_Hz = 150;            //fréquence de l'écran
 float Option_FrameRate;
 float Option_vitesse;
 int MODE=1; // permet de derteminé quel écran doit être affiché (menu, jeux, option...)
@@ -169,7 +169,7 @@ void ClicText() {
         if (mouseY>height*5/10+17*height/1440-75*height/1440) {
           fill(#909090);
           text("Play", width/30, height*5/10);
-          if (mousePressed && Timer >= 25)
+          if (mousePressed && Timer >= 30)
           {
             Timer =0;
             MODE=2;
@@ -187,7 +187,7 @@ void ClicText() {
         if (mouseY>height*6/10+17*height/1440-75*height/1440) {
           fill(#909090);
           text("Option", width/30, height*6/10);
-          if (mousePressed && Timer >= 25)
+          if (mousePressed && Timer >= 30)
           {
             Timer =0;
             MODE=3;
@@ -204,7 +204,7 @@ void ClicText() {
         if (mouseY>height*7/10+17*height/1440-75*height/1440) {
           fill(#909090);
           text("Quit", width/30, height*7/10);
-          if (mousePressed && Timer >= 25)
+          if (mousePressed && Timer >= 30)
           {
             Timer =0;
             exit();
@@ -253,31 +253,31 @@ void setup()
   imgPlayerR= loadImage("Player.png");
   imgPlayerL.resize(32*height/300, 32*height/300);
   imgPlayerR.resize(32*height/300, 32*height/300);
-  
+
   imgTuto1= loadImage("Tuto1.png");
-  imgTuto1.resize(542*height/1000,85*height/1000);
+  imgTuto1.resize(542*height/1000, 85*height/1000);
 
 
- 
-    imgPlayerL=createImage(imgPlayerR.width, imgPlayerR.height, ARGB);
-    for (int i=0; i<imgPlayerL.pixels.length; i++)
+
+  imgPlayerL=createImage(imgPlayerR.width, imgPlayerR.height, ARGB);
+  for (int i=0; i<imgPlayerL.pixels.length; i++)
+  {
+    imgPlayerL.pixels[i]=color(255, 255, 255);
+  }
+
+  for (int x=0; x<imgPlayerR.width; x++)
+  {
+    for (int y=0; y<imgPlayerR.height; y++)
     {
-      imgPlayerL.pixels[i]=color(255, 255, 255);
+      imgPlayerL.pixels[y*imgPlayerR.width+x]=imgPlayerR.pixels[y*imgPlayerR.width+(imgPlayerR.width-x-1)];
     }
+  }
 
-    for (int x=0; x<imgPlayerR.width; x++)
-    {
-      for (int y=0; y<imgPlayerR.height; y++)
-      {
-        imgPlayerL.pixels[y*imgPlayerR.width+x]=imgPlayerR.pixels[y*imgPlayerR.width+(imgPlayerR.width-x-1)];
-      }
-    }
-  
   GAME_Y_Player=0;
   GAME_X_Player=0;
   translationY = height*3/5;
   translationX = 20;
-  
+
 
   println("SettingsSize");
   println(Option_SettingsSize);
@@ -288,8 +288,8 @@ void setup()
 
   Option_FrameRate=0.3;
   Option_vitesse=Option_FrameRate*height/1080;
-println(Option_FrameRate);
-println(Option_vitesse);
+  println(Option_FrameRate);
+  println(Option_vitesse);
 
 
   background(#000000);
@@ -305,16 +305,17 @@ println(Option_vitesse);
 void draw()
 {
 
-  
-  
+
+
   frameRate(Option_Hz);
-  
+
   textAlign(CENTER);
+
+
   Timer = Timer+1;
 
 
-  t=t+(0.1);
-
+  
 
 
   if (MODE==1) {
@@ -322,7 +323,6 @@ void draw()
     for (int i = 0; i < objets.length; i++) {
       objets[i].deplacement();
       objets[i].carre();
-     
     }
 
 
@@ -330,20 +330,41 @@ void draw()
     ClicText();
   }
   if (MODE==3) {
-    
+
     Options();
   }
   if (MODE==2) {
+
+    if (keyPressed) {
+
+      if (key == 'p' && Timer >= 60) {
+        if (PAUSE == 0) {
+          PAUSE =1;
+          Timer = 0;
+          println ("OFF");
+        }
+      }
+    }
+    if (keyPressed) {
+      if (key == 'p' && Timer >= 60) {
+        if (PAUSE == 1) {
+          PAUSE = 0;
+          Timer = 0;
+          println ("ON");
+        }
+      }
+  }
+
+  if (PAUSE == 0) {
+    t=t+(0.1);
     map();
     Jeu();
     //HitBox();
     deplacement_ennemi();
+  }
+}
 
-  }
-  
-  if (MODE==4){
-    Credits();
-  }
-  
-  
+if (MODE==4) {
+  Credits();
+}
 }
