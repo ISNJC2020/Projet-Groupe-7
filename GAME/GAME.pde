@@ -168,8 +168,8 @@ void Text() {
   textAlign(LEFT);
   textFont(maPolice, 75*height/1440);
   text("Play", width/30, height*5/10);
-  text("Option", width/30, height*6/10);
-  text("Quit", width/30, height*7/10);
+  text("Options", width/30, height*6/10);
+  text("Quitter", width/30, height*7/10);
 }
 void ClicText() {
   if (mouseX<width/30+150*height/1440) {
@@ -195,7 +195,7 @@ void ClicText() {
       if (mouseY<height*6/10+17*height/1440) {
         if (mouseY>height*6/10+17*height/1440-75*height/1440) {
           fill(#909090);
-          text("Option", width/30, height*6/10);
+          text("Options", width/30, height*6/10);
           if (mousePressed && Timer >= 30)
           {
             Timer =0;
@@ -212,7 +212,7 @@ void ClicText() {
       if (mouseY<height*7/10+17*height/1440) {
         if (mouseY>height*7/10+17*height/1440-75*height/1440) {
           fill(#909090);
-          text("Quit", width/30, height*7/10);
+          text("Quitter", width/30, height*7/10);
           if (mousePressed && Timer >= 30)
           {
             Timer =0;

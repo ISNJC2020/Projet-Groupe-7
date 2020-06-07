@@ -11,7 +11,7 @@ void Options() {
   PFont maPolice = createFont("Times", 75*height/1440);
   PFont maPolice2 = createFont("Times", 40*height/1440);
   textFont(maPolice2, 40*height/1440);
-  text("Restart the game to change the definition", width*1/10, height-15*height/1440);
+  text("Redémarer le jeu pour actualiser la définition de l'écran", width*1/10, height-15*height/1440);
   textFont(maPolice, 75*height/1440);
 
 
@@ -68,8 +68,8 @@ void Options() {
 
 
     text("Full Screen", width*3/10, height*2/10);
-    text("Save and quit", height*1/10, height*9/10);
-    text("Quit", width*5/10, height*9/10);
+    text("Sauvegarder et quitter", height*1/10, height*9/10);
+    text("Quitter", width*5/10, height*9/10);
 
 
     if (mouseX>width*3/10) {
@@ -138,7 +138,7 @@ void Options() {
           if (mouseY>height*9/10+17*height/1440-75*height/1440) {
             //rect (height*1/10, height*9/10+17*height/1440, 480*height/1440, -75*height/1440);
             fill (#909090);
-            text("Save and quit", height*1/10, height*9/10);
+            text("Sauvegarder et quitter", height*1/10, height*9/10);
             if (mousePressed && Timer >= 25) 
             {
               Option_EnterSettings=0;
@@ -175,7 +175,7 @@ void Options() {
         if (mouseY<height*9/10+17*height/1440) {
           if (mouseY>height*9/10+17*height/1440-75*height/1440) {
             fill (#909090);
-            text("Quit", width*5/10, height*9/10);
+            text("Quitter", width*5/10, height*9/10);
             if (mousePressed && Timer >= 25)
             {
               Option_EnterSettings=0;
