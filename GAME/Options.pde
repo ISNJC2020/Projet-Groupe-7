@@ -11,7 +11,7 @@ void Options() {
   PFont maPolice = createFont("Times", 75*height/1440);
   PFont maPolice2 = createFont("Times", 40*height/1440);
   textFont(maPolice2, 40*height/1440);
-  text("Redémarer le jeu pour actualiser la définition de l'écran", width*1/10, height-15*height/1440);
+  text("Redémarez le jeu pour actualiser la définition de l'écran", width*1/10, height-15*height/1440);
   textFont(maPolice, 75*height/1440);
 
 
