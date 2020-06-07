@@ -20,6 +20,7 @@ if (GAME_X_Player+translationX <= width/5){
 image(imgTuto1,5,5);
 text("Utilisez Q et D ou les flèches pour vous déplacer respectivement à gauche et à droite",10,30+85*height/1000);
 text("Et la barre espace pour sauter",10,60+85*height/1000);
+text("Appuyez sur P pour mettre le jeu en pause",10,90+85*height/1000);
 }
 
 if((GAME_X_Player >= 0.6*width) && translationX >= -0.4*width){
