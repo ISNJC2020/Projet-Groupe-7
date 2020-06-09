@@ -1,11 +1,12 @@
+int cooldown=0;
+int dash = 0;
 void Jeu() {
-
 
 
   fill(#999999);
   //rect(0, height, width, -height*2/5+ 64*height/310);
 
-
+ cooldown=cooldown + 1;
 
 
   //Position + Direction
@@ -75,7 +76,22 @@ void Jeu() {
   if (Option_Control==2) {
     if (keyPressed) {
 
-
+ if (mousePressed==true && GAME_Direction_Player==1 && HITBOX_RIGHT==0 && GAME_SAUT==0 && cooldown>2) {
+        dash=0;
+        while (dash<=7) {
+          GAME_X_Player=GAME_X_Player+(4)*echelle;
+          dash += 1;
+        }
+        cooldown=0;
+      }
+        if (mousePressed==true && GAME_Direction_Player==2 && HITBOX_LEFT==0 && GAME_SAUT==0 && cooldown>2) {
+        dash=0;
+        while (dash<=7) {
+          GAME_X_Player=GAME_X_Player-(4)*echelle;
+          dash += 1;
+        }
+        cooldown=0;
+      }
 
 
       if ((key=='d' || keySave =='d') && (HITBOX_RIGHT==0)) {

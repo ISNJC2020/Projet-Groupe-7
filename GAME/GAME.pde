@@ -1,4 +1,4 @@
-int DeblMapTWO = 1;
+dint DeblMapTWO = 1;
 int DeblMapThree = 1;
 int DeblMapFour = 1;
 
