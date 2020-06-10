@@ -18,7 +18,7 @@ void Credits() {
   text("Thomas Duffy-Noblet", width/2, y1+400);
   text("Programmer", width/2, y1+450);
 
-  text("Lucas Lecompte", width/2, y1+550);
+  text("Lucas Leconte", width/2, y1+550);
   text("Programmer", width/2, y1+600);
 
   text("Thibaut Rochas", width/2, y1+700);
@@ -27,7 +27,7 @@ void Credits() {
   text("Thomas Duffy-Noblet", width/2, y1+850);
   text("Scriptwriter", width/2, y1+900);
 
-  text("Lucas Lecompte", width/2, y1+1000);
+  text("Lucas Leconte", width/2, y1+1000);
   text("Scriptwriter", width/2, y1+1050);
 
   text("Thibaut Rochas", width/2, y1+1150);  
@@ -39,7 +39,7 @@ void Credits() {
   text("Thomas Duffy-Noblet", width/2, y1+1450);
   text("Game Designer", width/2, y1+1500);
 
-  text("Lucas Lecompte", width/2, y1+1600);
+  text("Lucas Leconte", width/2, y1+1600);
   text("Game Designer", width/2, y1+1650);
 
   text("Thomas Duffy-Noblet", width/2, y1+1750);
@@ -59,7 +59,7 @@ void Credits() {
   
   textAlign(LEFT);
   textFont(maPolice, 25);
-  text ("Appuillez sur entrer pour quitter", width*2/100, height - width*2/100);
+  text ("Appuyez sur entrer pour quitter", width*2/100, height - width*2/100);
   
   if (keyPressed && key == ENTER){
   MODE = 1;

@@ -42,9 +42,10 @@ void pause() {
     text("CONTROLS :", width*405/500, height*1/20);
     textFont(maPolice, 30*height/1440);
     text("D ou flèche droite: Aller à droite", width*405/500, height*3/20);
-    text("Q ou flèche gauche: aller à gauche", width*405/500, height*4/20);
+    text("Q ou flèche gauche: Aller à gauche", width*405/500, height*4/20);
     text("Espace: Sauter", width*405/500, height*5/20);
-    text("A: Prendre possession", width*405/500, height*6/20);
+    text("Clic: Dash",width*405/500,height*6/20);
+    text("A: Prendre possession", width*405/500, height*7/20);
 
     textAlign(TOP, CENTER);
     textFont(maPolice, 50*height/1440);

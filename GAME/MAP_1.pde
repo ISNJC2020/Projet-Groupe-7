@@ -37,7 +37,7 @@ void mapONE() {
   if (GAME_X_Player+translationX <= 0.6*width+translationX && GAME_X_Player+translationX >= 0.3*width+translationX ) {
 
     text("Utilisez clic droit ou grauche pour attaquer", 0.02*width, 0.02*width);
-    text("Après l'avoir mis KO dirigez vous vers lui et apuillez sur 'A' pour prendre le control de l'ennemi KO", 0.02*width, 0.04*width);
+    text("Après l'avoir mis KO dirigez vous vers lui et appuyez sur 'A' pour prendre le control de l'ennemi KO", 0.02*width, 0.04*width);
   }
   if (GAME_X_Player+translationX >= 0.8*width+translationX ) {
     if (possession == 1) {

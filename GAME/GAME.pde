@@ -30,14 +30,14 @@ int y = 0;
 int Option_Hz = 150;            //fréquence de l'écran
 float Option_FrameRate;
 float Option_vitesse;
-int MODE=1; // permet de derteminé quel écran doit être affiché (menu, jeux, option...)
+int MODE=1; // permet de derteminer quel écran doit être affiché (menu, jeux, option...)
 
 int possession=0;
 int Option_EnterSettings=0;
 String w=""; //variables de la définition de l'écran custom
 String h="";
 //GAME
-int GAME_Direction_Player=1; //1=R 2=L
+int GAME_Direction_Player=1; //1=droite 2=gauche
 float GAME_X_Player=0;
 float GAME_Y_Player=0;
 int GAME_Vitesse_Player=100; //Entre 1 et 100
@@ -64,7 +64,7 @@ int HITBOX_LEFT=0;
 int HITBOX_RIGHT=0;
 
 //Options
-int Option_Control=2;        //Switch entre le control avec ZQSD (2) et les fleches (1)
+int Option_Control=2;        //Switch entre le contrôle avec ZQSD (2) et les fleches (1)
 int Option_SettingsSize=1;
 int Option_W=0;
 int Option_H=0;
