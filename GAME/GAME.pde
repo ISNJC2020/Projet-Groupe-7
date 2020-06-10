@@ -9,8 +9,11 @@ PImage imgOption_control_ZQSD;
 PImage imgPlayerL;
 PImage imgPlayerR;
 PImage imgTuto1;
+PImage imgEnnemiL;
+PImage imgEnnemiR;
+PImage imgEnnemi2;
 
-
+objet_ennemi[] objets_ennemis = new objet_ennemi[1];
 
 int Timer=0;
 float echelle;
@@ -29,6 +32,7 @@ float Option_FrameRate;
 float Option_vitesse;
 int MODE=1; // permet de derteminé quel écran doit être affiché (menu, jeux, option...)
 
+int possession=0;
 int Option_EnterSettings=0;
 String w=""; //variables de la définition de l'écran custom
 String h="";
@@ -47,6 +51,8 @@ float GAME_Y_Player_Jump=0;
 int GAME_ennemi_hitbox_right=0;
 int GAME_ennemi_hitbox_left=0;
 int GAME_ennemi_hitbox_down;
+int PV=3;
+int PV_Timer=0;
 
 int VerSaut=0;
 float translationX;
@@ -164,12 +170,13 @@ void Text() {
   fill(#FFFFD0);
   PFont maPolice = createFont("Times", 150*height/1440);
   textFont(maPolice, 150*height/1440);
-  text("Nom Indéterminé", width/2, height/5);
+  text("Possession", width/2, height/5);
   textAlign(LEFT);
   textFont(maPolice, 75*height/1440);
   text("Play", width/30, height*5/10);
   text("Options", width/30, height*6/10);
-  text("Quitter", width/30, height*7/10);
+  text("Credits", width/30, height*7/10);
+  text("Quitter", width/30, height*8/10);
 }
 void ClicText() {
   if (mouseX<width/30+150*height/1440) {
@@ -212,7 +219,25 @@ void ClicText() {
       if (mouseY<height*7/10+17*height/1440) {
         if (mouseY>height*7/10+17*height/1440-75*height/1440) {
           fill(#909090);
-          text("Quitter", width/30, height*7/10);
+          text("Credits", width/30, height*7/10);
+          if (mousePressed && Timer >= 30)
+          {
+            y1=width*3/5;
+            Timer =0;
+            MODE=4;
+            println("Clic");
+            delay(10);
+          }
+        }
+      }
+    }
+  }
+  if (mouseX<width/30+150*height/1440) {
+    if (mouseX>width/30) {
+      if (mouseY<height*8/10+17*height/1440) {
+        if (mouseY>height*8/10+17*height/1440-75*height/1440) {
+          fill(#909090);
+          text("Quitter", width/30, height*8/10);
           if (mousePressed && Timer >= 30)
           {
             Timer =0;
@@ -260,9 +285,17 @@ void setup()
 
   imgPlayerL= loadImage("Player.png");
   imgPlayerR= loadImage("Player.png");
+  imgEnnemiL= loadImage("ennemi.png");
+  imgEnnemiR= loadImage("ennemi.png");
+  imgEnnemi2= loadImage("ennemi2.png");
   imgPlayerL.resize(32*height/300, 32*height/300);
   imgPlayerR.resize(32*height/300, 32*height/300);
-
+  
+  imgEnnemiL.resize(32*height/300, 32*height/300);
+  imgEnnemiR.resize(32*height/300, 32*height/300);
+  
+  imgEnnemi2.resize(32*height/300, 32*height/300);
+  
   imgTuto1= loadImage("Tuto1.png");
   imgTuto1.resize(542*height/1000, 85*height/1000);
 
@@ -279,6 +312,20 @@ void setup()
     for (int y=0; y<imgPlayerR.height; y++)
     {
       imgPlayerL.pixels[y*imgPlayerR.width+x]=imgPlayerR.pixels[y*imgPlayerR.width+(imgPlayerR.width-x-1)];
+    }
+  }
+  
+    imgEnnemiL=createImage(imgEnnemiR.width, imgEnnemiR.height, ARGB);
+  for (int i=0; i<imgEnnemiL.pixels.length; i++)
+  {
+    imgEnnemiL.pixels[i]=color(255, 255, 255);
+  }
+
+  for (int x=0; x<imgEnnemiR.width; x++)
+  {
+    for (int y=0; y<imgEnnemiR.height; y++)
+    {
+      imgEnnemiL.pixels[y*imgEnnemiR.width+x]=imgEnnemiR.pixels[y*imgEnnemiR.width+(imgEnnemiR.width-x-1)];
     }
   }
 
@@ -306,6 +353,13 @@ void setup()
   for (int i = 0; i < objets.length; i++) {
     objets[i] = new objet();
   }
+
+
+
+  for (int i = 0; i < objets_ennemis.length; i++) {
+    objets_ennemis[i] = new objet_ennemi();
+  }
+
   noStroke();
   echelle=(height*100/1440);
   echelle=echelle/100;
@@ -346,8 +400,9 @@ void draw()
   if (MODE==2) {
     if (PAUSE == 0) {
       if (MAP != 0) {
-      t=t+(0.1);
-    }
+        t=t+(0.1);
+        PV_Timer = PV_Timer +1 ;
+      }
 
       if (MAP == 0) {
         MenuMap();
@@ -368,7 +423,6 @@ void draw()
       }
 
       //HitBox();
-      deplacement_ennemi();
     }
   }
 

@@ -41,9 +41,10 @@ void pause() {
     textFont(maPolice, 40*height/1440);
     text("CONTROLS :", width*405/500, height*1/20);
     textFont(maPolice, 30*height/1440);
-    text("D ou flèche droite: aller à droite", width*405/500, height*3/20);
+    text("D ou flèche droite: Aller à droite", width*405/500, height*3/20);
     text("Q ou flèche gauche: aller à gauche", width*405/500, height*4/20);
-    text("Espace: sauter", width*405/500, height*5/20);
+    text("Espace: Sauter", width*405/500, height*5/20);
+    text("A: Prendre possession", width*405/500, height*6/20);
 
     textAlign(TOP, CENTER);
     textFont(maPolice, 50*height/1440);
@@ -105,6 +106,13 @@ void pause() {
               GAME_SAUT=0;
               GAME_X_Player=0;
               GAME_Y_Player=0;
+              cooldown=0;
+              dash = 0;
+              dashON = 0;
+              PV=3;
+              translationY = height*3/5;
+              translationX = 20;
+             
             }
           }
         }

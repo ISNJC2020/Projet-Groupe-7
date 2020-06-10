@@ -1,10 +1,28 @@
 int cooldown=0;
 int dash = 0;
 int dashON = 0;
+
+
 void Jeu() {
 
   PFont maPolice2 = createFont("Times", 100*height/1440);
   textFont(maPolice2, 40*height/1440);
+
+  if (PV == 0) {
+    PAUSE=0;
+    t=0;
+    GAME_SAUT=0;
+    GAME_X_Player=0;
+    GAME_Y_Player=0;
+    cooldown=0;
+    dash = 0;
+    dashON = 0;
+    PV=3;
+    translationY = height*3/5;
+    translationX = 20;
+  }
+
+
 
   if (cooldown<240) {
     fill (#FFFF00);
@@ -17,6 +35,11 @@ void Jeu() {
   }
   text ("DASH", width/2, height*99/100);
 
+  fill (#FF0000);
+  text ("PV :", width*1/40, height*99/100);
+  text (PV, width*2/40, height*99/100);
+  text ("/3", width*3/40, height*99/100);
+
   fill(#999999);
   //rect(0, height, width, -height*2/5+ 64*height/310);
 
@@ -24,11 +47,13 @@ void Jeu() {
 
 
   //Position + Direction
-  if (GAME_Direction_Player==1) {
-    image(imgPlayerR, GAME_X_Player+translationX, GAME_Y_Player+translationY);
-  }
-  if (GAME_Direction_Player==2) {
-    image(imgPlayerL, GAME_X_Player+translationX, GAME_Y_Player+translationY);
+  if (possession == 0) {
+    if (GAME_Direction_Player==1) {
+      image(imgPlayerR, GAME_X_Player+translationX, GAME_Y_Player+translationY);
+    }
+    if (GAME_Direction_Player==2) {
+      image(imgPlayerL, GAME_X_Player+translationX, GAME_Y_Player+translationY);
+    }
   }
 
 
@@ -91,7 +116,7 @@ void Jeu() {
 
 
 
-  if ((mousePressed==true && GAME_Direction_Player==1 && HITBOX_RIGHT==0 && GAME_SAUT==0 && cooldown>240) || (dashON == 1 && GAME_Direction_Player==1)) {
+  if (((mousePressed==true && GAME_Direction_Player==1  && GAME_SAUT==0 && cooldown>240) || (dashON == 1 && GAME_Direction_Player==1))&& HITBOX_RIGHT==0) {
 
     if (dash < 15) {
 
@@ -111,7 +136,7 @@ void Jeu() {
 
     cooldown=0;
   }
-  if ((mousePressed==true && GAME_Direction_Player==2 && HITBOX_LEFT==0 && GAME_SAUT==0 && cooldown>240) || (dashON == 1 && GAME_Direction_Player==2)) {
+  if ((mousePressed==true && GAME_Direction_Player==2 && GAME_SAUT==0 && cooldown>240) || (dashON == 1 && GAME_Direction_Player==2) && HITBOX_LEFT==0) {
 
     if (dash < 15) {
       dashON = 1;
