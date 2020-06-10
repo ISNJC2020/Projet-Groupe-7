@@ -1,4 +1,4 @@
-void mapONE() {
+void mapTWO() {
 
 
 
@@ -26,43 +26,7 @@ void mapONE() {
   textFont(maPolice, 25*height/1440);
 
 
-  //Tuto
-  if (GAME_X_Player+translationX <= width/5+translationX) {
-    image(imgTuto1, 5, 5);
-    text("Utilisez Q et D ou les flèches pour vous déplacer respectivement à gauche et à droite", 10, 30+85*height/1000);
-    text("Et la barre espace pour sauter", 10, 60+85*height/1000);
-    text("Appuyez sur P pour mettre le jeu en pause et afficher les controls", 10, 90+85*height/1000);
-  }
 
-  if (GAME_X_Player+translationX <= 0.6*width+translationX && GAME_X_Player+translationX >= 0.3*width+translationX ) {
-
-    text("Utilisez clic droit ou grauche pour attaquer", 0.02*width, 0.02*width);
-    text("Après l'avoir mis KO dirigez vous vers lui et apuillez sur 'A' pour prendre le control de l'ennemi KO", 0.02*width, 0.04*width);
-  }
-  if (GAME_X_Player+translationX >= 0.8*width+translationX ) {
-    if (possession == 1) {
-      text("Ouvrez la porte", 0.02*width, 0.02*width);
-    }
-    if (possession == 0) {
-      text("Vous devez avoir un corps humain pour ouvrir cette porte", 0.02*width, 0.02*width);
-    }
-  }
-  if (GAME_X_Player >= 1.075*width-32*height/300 && possession ==1 ) {
-    MODE = 4;
-    MODE=1;
-    t=0;
-    MAP = 0;
-    GAME_SAUT=0;
-    GAME_X_Player=0;
-    GAME_Y_Player=0;
-    cooldown=0;
-    dash = 0;
-    dashON = 0;
-    PV=3;
-    translationY = height*3/5;
-    translationX = 20;
-    possession = 0;
-  }
 
 
 

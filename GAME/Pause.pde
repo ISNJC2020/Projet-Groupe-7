@@ -112,7 +112,7 @@ void pause() {
               PV=3;
               translationY = height*3/5;
               translationX = 20;
-             
+              possession = 0;
             }
           }
         }

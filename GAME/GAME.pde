@@ -90,8 +90,8 @@ class objet {
   void deplacement() {
 
     if (D<=1) {
-      x=x+0.1*Option_vitesse*profondeur*height/1440;
-      y=y+0.1*Option_vitesse*profondeur*height/1440;
+      x=x+0.2*Option_vitesse*profondeur*height/1440;
+      y=y+0.2*Option_vitesse*profondeur*height/1440;
       if (x>=width-20*profondeur*height/1440) {
         D=2;
         if (y>=height-20*profondeur*height/1440) {
@@ -104,8 +104,8 @@ class objet {
     } else {
 
       if (D<=2) {
-        x=x-0.1*Option_vitesse*profondeur*height/1440;
-        y=y+0.1*Option_vitesse*profondeur*height/1440;
+        x=x-0.2*Option_vitesse*profondeur*height/1440;
+        y=y+0.2*Option_vitesse*profondeur*height/1440;
 
         if (x<=0) {
           D=1;
@@ -119,8 +119,8 @@ class objet {
       } else {
 
         if (D<=3) {
-          x=x-0.1*Option_vitesse*profondeur*height/1440;
-          y=y-0.1*Option_vitesse*profondeur*height/1440;
+          x=x-0.2*Option_vitesse*profondeur*height/1440;
+          y=y-0.2*Option_vitesse*profondeur*height/1440;
           if (x<=0) {
             D=4;
             if (y<=0) {
@@ -133,8 +133,8 @@ class objet {
         } else {
 
           if (D<=4) {
-            x=x+0.1*Option_vitesse*profondeur*height/1440;
-            y=y-0.1*Option_vitesse*profondeur*height/1440;
+            x=x+0.2*Option_vitesse*profondeur*height/1440;
+            y=y-0.2*Option_vitesse*profondeur*height/1440;
             if (x>=width-20*profondeur*height/1440) {
               D=3; 
               if (y<=0) {
@@ -197,7 +197,7 @@ void ClicText() {
       }
     }
   }
-  if (mouseX<width/30+220*height/1440) {
+  if (mouseX<width/30+250*height/1440) {
     if (mouseX>width/30) {
       if (mouseY<height*6/10+17*height/1440) {
         if (mouseY>height*6/10+17*height/1440-75*height/1440) {
@@ -214,7 +214,7 @@ void ClicText() {
       }
     }
   }
-  if (mouseX<width/30+150*height/1440) {
+  if (mouseX<width/30+240*height/1440) {
     if (mouseX>width/30) {
       if (mouseY<height*7/10+17*height/1440) {
         if (mouseY>height*7/10+17*height/1440-75*height/1440) {
@@ -232,7 +232,7 @@ void ClicText() {
       }
     }
   }
-  if (mouseX<width/30+150*height/1440) {
+  if (mouseX<width/30+240*height/1440) {
     if (mouseX>width/30) {
       if (mouseY<height*8/10+17*height/1440) {
         if (mouseY>height*8/10+17*height/1440-75*height/1440) {
@@ -344,8 +344,7 @@ void setup()
 
   Option_FrameRate=0.3;
   Option_vitesse=Option_FrameRate*height/1080;
-  println(Option_FrameRate);
-  println(Option_vitesse);
+
 
 
   background(#000000);
@@ -413,6 +412,7 @@ void draw()
         Jeu();
       }
       if (MAP == 2) {
+        mapTWO();
         Jeu();
       }
       if (MAP == 3) {
@@ -422,7 +422,6 @@ void draw()
         Jeu();
       }
 
-      //HitBox();
     }
   }
 

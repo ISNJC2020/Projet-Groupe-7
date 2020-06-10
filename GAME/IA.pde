@@ -8,17 +8,26 @@ class objet_ennemi {
 
   void deplacement_ennemi() {
 
-    if (MAP == 1) {
+    if (MAP == 1 || MAP == 2) {
       if ((GAME_x_ennemi+translationX*height/300+translationX >= 1.1*width+translationX) || (GAME_x_ennemi+translationX >= (0.5*width+translationX)-32*height/300) && (GAME_x_ennemi+translationX <= (0.6*width+translationX)) && (GAME_y_ennemi+translationY <= 0.1*width+translationY)) {  
         GAME_ennemi_hitbox_right = 1;
       } else {
         GAME_ennemi_hitbox_right = 0;
       }
-      if ((GAME_x_ennemi+translationX <= 0+translationX) || (GAME_x_ennemi >= (0.5*width+translationX)-32*height/300) && (GAME_x_ennemi+translationX <= (0.6*width+translationX)) && (GAME_y_ennemi+translationY <= 0.1*width+translationY) || GAME_x_ennemi+translationX <= 0.5*width+translationX) {
+      if ((GAME_x_ennemi+translationX <= 0+translationX) || (GAME_x_ennemi >= (0.5*width+translationX)-32*height/300) && (GAME_x_ennemi+translationX <= (0.6*width+translationX)) && (GAME_y_ennemi+translationY <= 0.1*width+translationY)) {
         GAME_ennemi_hitbox_left = 1;
       } else {
         GAME_ennemi_hitbox_left = 0;
       }
+
+      if (MAP == 0) {
+        if (GAME_x_ennemi+translationX <= 0.5*width+translationX) {
+          GAME_ennemi_hitbox_left = 1;
+        } else {
+          GAME_ennemi_hitbox_left = 0;
+        }
+      }
+
       if (GAME_y_ennemi+translationY+32*height/300 >= (0.2*width+translationY)) { 
         GAME_ennemi_hitbox_down = 1;
       } else {
@@ -26,6 +35,11 @@ class objet_ennemi {
       }
     }
 
+   if (MAP == 1){
+     if (GAME_x_ennemi+translationX <= (0.5*width+translationX)){
+       GAME_ennemi_hitbox_left = 1;
+     }
+   }
 
     if (GAME_ennemi_assom == 0) {
 
@@ -37,11 +51,12 @@ class objet_ennemi {
       {
         GAME_x_ennemi=GAME_x_ennemi-(2*echelle);
       }
-      if (GAME_ennemi_hitbox_down==0)
-      {
-        GAME_y_ennemi = (1.5*(t*t)*(width/360));
-      }
     }
+    if (GAME_ennemi_hitbox_down==0)
+    {
+      GAME_y_ennemi = (1.5*(t*t)*(width/360));
+    }
+
 
     if (dashON == 1 && GAME_X_Player >= GAME_x_ennemi-32*height/300 && GAME_X_Player<=GAME_x_ennemi+32*height/300) {
       GAME_ennemi_assom = 1;
@@ -67,7 +82,6 @@ class objet_ennemi {
     if (((keyPressed && key == 'a') && possession == 1) && Timer >= 70) {
       Timer = 0;
       possession = 0;
-      println ("possession off");
     }
   }
 
@@ -102,7 +116,11 @@ class objet_ennemi {
       }
     }
 
-
+    if (GAME_X_Player >= 1.075*width-32*height/300 && possession ==1 ) {
+      GAME_ennemi_assom = 0;
+      GAME_x_ennemi = 0.8*width;
+      GAME_y_ennemi = 0;
+    }
 
 
     if (PV == 0) {

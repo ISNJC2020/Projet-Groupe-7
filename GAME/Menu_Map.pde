@@ -11,9 +11,9 @@ void MenuMap() {
   fill(#AAAAAA);
 
   text ("NIVEAU 1", width*1.5/10, height*1.5/10);
-  text ("NIVEAU 2", width*1.5/10, height*3/10);
-  text ("NIVEAU 3", width*1.5/10, height*4.5/10);
-  text ("NIVEAU 4", width*1.5/10, height*6/10);
+  text ("NIVEAU 2 (A VENIR)", width*1.5/10, height*3/10);
+  text ("NIVEAU 3 (A VENIR)", width*1.5/10, height*4.5/10);
+  text ("NIVEAU 4 (A VENIR)", width*1.5/10, height*6/10);
 
 
 
